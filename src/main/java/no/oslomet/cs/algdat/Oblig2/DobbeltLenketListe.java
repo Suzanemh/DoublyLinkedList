@@ -59,7 +59,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             {
                 if (a[i] != null)
                 {
-                    p = p.neste = new Node<T>(a[i], p.forrige, p.neste);   // Nye noder, evt siste.
+                    p = p.neste = new Node<T>(a[i], p.forrige, p.neste);   // Eventuelt resterende noder
                     antall++;
                 }
             }
