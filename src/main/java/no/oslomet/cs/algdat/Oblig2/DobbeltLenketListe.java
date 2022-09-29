@@ -81,9 +81,20 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return antall == 0;
     }
 
+    // Koden er tatt fra kompendiet seksjon 3.3.2  Programkode 3.3.2 f)
+    // Jeg har bar omgjorde den til dobbel lenke liste
     @Override
     public boolean leggInn(T verdi) {
-        throw new UnsupportedOperationException();
+
+        //throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
+        Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
+
+        if (antall == 0)  hode = hale = new Node<>(verdi, null,null);  // tom liste
+        else hale = hale.neste = new Node<>(verdi,hale, null);         // legges bakerst
+
+        antall++;                  // en mer i listen
+        return true;
     }
 
     @Override
@@ -126,13 +137,60 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+    // Koden er tatt fra kompendie fra Oppgaver til Avsnitt 3.3.2 oppgave 2
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
-    }
 
+        //throw new UnsupportedOperationException();
+        StringBuilder s = new StringBuilder();
+
+        s.append('[');
+
+        if (!tom())
+        {
+            Node<T> p = hode;
+            s.append(p.verdi);
+
+            p = p.neste;
+
+            while (p != null)  // tar med resten hvis det er noe mer
+            {
+                s.append(',').append(' ').append(p.verdi);
+                p = p.neste;
+            }
+        }
+
+        s.append(']');
+
+        return s.toString();
+    }
+    // tok utgangspunktet i toString()  og har bare byttet:
+    // Node<T> p til hale
+    // p = p.neste til p = p.forrige før og etter while løkke
     public String omvendtString() {
-        throw new UnsupportedOperationException();
+
+        //throw new UnsupportedOperationException();
+        StringBuilder s = new StringBuilder();
+
+        s.append('[');
+
+        if (!tom())
+        {
+            Node<T> p = hale;
+            s.append(p.verdi);
+
+            p = p.forrige;
+
+            while (p != null)  // tar med resten hvis det er noe mer
+            {
+                s.append(',').append(' ').append(p.verdi);
+                p = p.forrige;
+            }
+        }
+
+        s.append(']');
+
+        return s.toString();
     }
 
     @Override
