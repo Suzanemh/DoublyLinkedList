@@ -59,7 +59,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             {
                 if (a[i] != null)
                 {
-                    p = p.neste = new Node<T>(a[i]); // Eventuelt resterende noder
+                    p.neste = new Node<T>(a[i]); // Eventuelt resterende noder
+                    p = p.neste;
                     hode.neste.forrige = hode;
                     p.forrige = hale;
                     hale = p;    // Når vi går ut av forløkken vil halen være siste p. Som dermed har en neste peker som peker på ingenting.
@@ -104,14 +105,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     // Jeg har bar omgjorde den til dobbel lenke liste
     @Override
     public boolean leggInn(T verdi) {
-
-        //throw new UnsupportedOperationException();
-        //throw new UnsupportedOperationException();
         Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
 
         if (antall == 0)  hode = hale = new Node<>(verdi, null,null);  // tom liste
-        else hale = hale.neste = new Node<>(verdi,hale, null);         // legges bakerst
-
+        else { /*hale = hale.neste = new Node<>(verdi,hale, null); */        // legges bakerst
+            hale.neste = new Node<>(verdi, hale, null);
+            hale = hale.neste;
+        }
         antall++;                  // en mer i listen
         return true;
     }
