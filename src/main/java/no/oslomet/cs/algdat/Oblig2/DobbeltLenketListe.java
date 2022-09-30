@@ -97,6 +97,33 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return true;
     }
 
+    //Oppgave 3a
+    private Node <T> finnNode(int indeks){
+        Node <T> p = hode;
+
+        //opretter variabel midten
+        int midten = antall / 2;
+
+        if(indeks < midten){ //indeksen mindre enn midten
+            for(int i = 0; i < midten; i++){
+                p = p.neste;
+            }
+            return p;
+        }
+         else{ //hvis indeksen større enn midnten
+             for(int i = midten + 1; i < antall; i++){
+                 p = p.neste;
+             }
+             return p;
+        }
+
+
+
+
+
+
+    }
+
     @Override
     public void leggInn(int indeks, T verdi) {
         throw new UnsupportedOperationException();
