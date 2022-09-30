@@ -119,21 +119,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     //Oppgave 3a
     private Node <T> finnNode(int indeks){
         Node <T> p = hode;
+        Node <T> r = hale;
 
         //opretter variabel midten
         int midten = antall / 2;
 
-        if(indeks <= midten){ //indeksen mindre enn midten
-            for(int i = 0; i < midten; i++){
+        if(indeks <= midten) { // Dersom indeksen er på første halvdel
+            for(int i = 0; i < indeks; i++){
                 p = p.neste;
             }
             return p;
         }
-         else{ //hvis indeksen større enn midnten
-             for(int i = midten + 1; i < antall; i++){
-                 p = p.neste;
-             }
-             return p;
+        else { // Dersom indeksen er på andre halvdel
+            for (int i = 0; i < indeks; i++) {
+                r = r.forrige;
+            }
+            return r;
         }
     }
 
@@ -149,10 +150,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        indeksKontroll(indeks,false);
-        return finnNode(indeks).verdi; // denne metoden henter inn og returneren veriden ved finnNode
+        throw new UnsupportedOperationException();
     }
-
 
     @Override
     public int indeksTil(T verdi) {
