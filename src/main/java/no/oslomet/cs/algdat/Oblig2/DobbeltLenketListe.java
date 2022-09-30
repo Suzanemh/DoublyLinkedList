@@ -44,6 +44,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         endringer = 0;
     }
 
+
     public DobbeltLenketListe(T[] a) {
 
         Objects.requireNonNull(a,"Tabellen er tom!"); // Vi bruker denne metoden for å utelukke at tabellen er tom
