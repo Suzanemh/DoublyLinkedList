@@ -59,11 +59,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             {
                 if (a[i] != null)
                 {
-                    p = p.neste = new Node<T>(a[i], p.forrige, p.neste);   // Eventuelt resterende noder
+                    p = p.neste = new Node<T>(a[i]); // Eventuelt resterende noder
+                    hode.neste.forrige = hode;
+                    p.forrige = hale;
+                    hale = p;    // Når vi går ut av forløkken vil halen være siste p. Som dermed har en neste peker som peker på ingenting.
                     antall++;
                 }
             }
-            hale = p;    // Når vi går ut av forløkken vil halen være siste p. Som dermed har en neste peker som peker på ingenting.
+
         }
     }
 
