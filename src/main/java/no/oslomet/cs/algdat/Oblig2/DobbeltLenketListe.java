@@ -107,7 +107,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //opretter variabel midten
         int midten = antall / 2;
 
-        if(indeks < midten){ //indeksen mindre enn midten
+        if(indeks <= midten){ //indeksen mindre enn midten
             for(int i = 0; i < midten; i++){
                 p = p.neste;
             }
