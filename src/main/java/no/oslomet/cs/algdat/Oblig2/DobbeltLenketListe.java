@@ -90,9 +90,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Liste<T> n = new DobbeltLenketListe<>();
         Node<T> p = hode;
         int endringer = 0;
+        if (antall == 0)  hode = hale = null;
         while(p!=null) {
-            if(endringer > fra && endringer <til){
-                n.leggInn((T) p);
+            if(endringer >= fra && endringer < til){
+                n.leggInn(p.verdi);
             }
             p = p.neste;
             endringer++;
@@ -127,6 +128,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     //Oppgave 3a
     private Node <T> finnNode(int indeks){
+        if(indeks < 0 || indeks >= antall){
+            throw new IndexOutOfBoundsException();
+        }
         Node <T> p = hode;
         Node <T> r = hale;
 
@@ -177,7 +181,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks,false);
+        return finnNode(indeks).verdi;
     }
 
     @Override
