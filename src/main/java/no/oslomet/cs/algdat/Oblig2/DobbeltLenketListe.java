@@ -169,20 +169,38 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
         antall++;*/
     }
-
+    // oppgave 4
+    // Oppgaven er tatt fra løsningsforslag Avsnitt 3.3.3   oppgave 2 i kompendiet
+    //kaller på metoden indeksTil() og sjekker om verdien finnes
+    // hvis inteksTil() innenholder ønsket verdien returneres true, hvis ikke da retuneres false
     @Override
     public boolean inneholder(T verdi) {
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
+        return indeksTil(verdi) != -1;
     }
 
     @Override
     public T hent(int indeks) {
         throw new UnsupportedOperationException();
     }
-
+    // oppgave 4
+    // Oppgaven er tatt fra løsningsforslag Avsnitt 3.3.3   oppgave 2 i kompendiet
     @Override
     public int indeksTil(T verdi) {
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
+        if (verdi == null) return -1;
+        // for å finne verdien må vi loope gjennom lenket liste og vi starter fra hode
+        Node<T> p = hode;
+
+        for (int indeks = 0; indeks < antall ; indeks++)
+        {
+            // hvis nodesin verdi er lik ønsket verdi returnerer vi indexsen til verdien
+            if (p.verdi.equals(verdi)) return indeks;
+            // hvis verdien er ikke fant fortsetter vi å bevege oss måt neste index
+            p = p.neste;
+        }
+        // hvis index ikke finnes returneres -1 som oppgaven ber om
+        return -1;
     }
 
     @Override
