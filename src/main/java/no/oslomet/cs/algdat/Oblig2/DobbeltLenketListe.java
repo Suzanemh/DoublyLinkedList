@@ -85,8 +85,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                     ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
     }
 
-    public Liste<T> subliste(int fra, int til) {
-        fratilKontroll(antall,fra,til);
+    public Liste<T> subliste(int fra, int til) { //Oppgave 3b
+        /*fratilKontroll(antall,fra,til);
         Liste<T> n = new DobbeltLenketListe<>();
         Node<T> p = hode;
         int endringer = 0;
@@ -97,7 +97,23 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             p = p.neste;
             endringer++;
         }
-        return n;
+        return n;*/
+        Liste<T> liste = new DobbeltLenketListe<>();
+        int lengde = til - fra;
+
+        if (lengde < 1) {
+            return liste;
+        }
+
+        Node<T> antall = finnNode(fra);
+
+        while (lengde > 0) {
+            liste.leggInn(antall.verdi);
+            antall = antall.neste;
+            lengde--;
+        }
+
+        return liste;
     }
 
     @Override
