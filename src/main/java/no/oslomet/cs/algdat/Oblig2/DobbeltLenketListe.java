@@ -119,12 +119,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
              }
              return p;
         }
-
-
-
-
-
-
     }
 
     @Override
@@ -139,8 +133,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks,false);
+        return finnNode(indeks).verdi; // denne metoden henter inn og returneren veriden ved finnNode
     }
+
 
     @Override
     public int indeksTil(T verdi) {
