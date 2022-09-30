@@ -46,19 +46,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     public DobbeltLenketListe(T[] a) {
 
-        Objects.requireNonNull(a,"Tabellen er tom!"); // Vi bruker denne metoden for å utelukke at tabellen er tom
-        int i = 0; for (; i < a.length && a[i] == null; i++);   // Hopper over eventuelle nuller i tabellen.
+        Objects.requireNonNull(a, "Tabellen er tom!"); // Vi bruker denne metoden for å utelukke at tabellen er tom
+        int i = 0;
+        for (; i < a.length && a[i] == null; i++) ;   // Hopper over eventuelle nuller i tabellen.
 
-        if (i < a.length)
-        {
+        if (i < a.length) {
             Node<T> p = hode = new Node<T>(a[i], null, null);  // Hodet settes på plass
-            antall ++;
+            antall++;
             // For løkke for å finne resten
             i++;
-            for (; i < a.length; i++)
-            {
-                if (a[i] != null)
-                {
+            for (; i < a.length; i++) {
+                if (a[i] != null) {
                     p = p.neste = new Node<T>(a[i]); // Eventuelt resterende noder
                     hode.neste.forrige = hode;
                     p.forrige = hale;
@@ -71,8 +69,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     //Oppgave 3B Kildekode hentet fra 1.2.3.a
-    public static void fratilKontroll(int antall, int fra, int til)
-    {
+    public static void fratilKontroll(int antall, int fra, int til) {
         if (fra < 0)                                  // fra er negativ
             throw new IndexOutOfBoundsException("fra(" + fra + ") er negativ!");
 
@@ -86,8 +83,23 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
 
     public Liste<T> subliste(int fra, int til) {
+        fratilKontroll(antall, fra, til); //sjekker om verdiene er lovlige
+        Liste<T> liste = new DobbeltLenketListe<>(); //Instans av klassen
+        int lengde = til - fra;
 
-        throw new UnsupportedOperationException();
+        if (lengde < 1) {
+            return liste;
+        }
+        Node<T> current = finnNode(fra);
+        while (lengde > 0) {
+            liste.leggInn(current.verdi);
+            current = current.neste;
+            lengde--;
+
+
+        }
+
+        return liste;
     }
 
     @Override
