@@ -84,10 +84,19 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                     ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
     }
 
-
     public Liste<T> subliste(int fra, int til) {
-
-        throw new UnsupportedOperationException();
+        fratilKontroll(antall,fra,til);
+        Liste<T> n = new DobbeltLenketListe<>();
+        Node<T> p = hode;
+        int endringer = 0;
+        while(p!=null) {
+            if(endringer > fra && endringer <til){
+                n.leggInn((T) p);
+            }
+            p = p.neste;
+            endringer++;
+        }
+        return n;
     }
 
     @Override
@@ -140,7 +149,25 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void leggInn(int indeks, T verdi) {
-        throw new UnsupportedOperationException();
+        /*Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
+        indeksKontroll(indeks, true);
+        if (indeks == 0)                     // ny verdi skal ligge først
+        {
+            hode = new Node<T>(verdi, hode);    // legges først
+            if (antall == 0) hale = hode;      // hode og hale går til samme node
+        }
+        else if (indeks == antall)           // ny verdi skal ligge bakerst
+        {
+            hale = hale.neste = new Node<T>(verdi, null);  // legges bakerst
+        }
+        else
+        {
+            Node<T> p = hode;                  // p flyttes indeks - 1 ganger
+            for (int i = 1; i < indeks; i++) p = p.neste;
+
+            p.neste = new Node<T>(verdi, p.neste);  // verdi settes inn i listen
+        }
+        antall++;*/
     }
 
     @Override
@@ -168,9 +195,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
        T gammelVerdi = p.verdi;
        p.verdi = nyverdi;
        return gammelVerdi;
-
-
     }
+
 
     @Override
     public boolean fjern(T verdi) {
