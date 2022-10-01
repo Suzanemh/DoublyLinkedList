@@ -73,7 +73,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     //Oppgave 3B Kildekode hentet fra 1.2.3.a
-    public static void fratilKontroll(int antall, int fra, int til)
+    private static void fratilKontroll(int antall, int fra, int til)
     {
         if (fra < 0)                                  // fra er negativ
             throw new IndexOutOfBoundsException("fra(" + fra + ") er negativ!");
@@ -134,7 +134,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public boolean leggInn(T verdi) {
         Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
 
-        if (antall == 0)  hode = hale = new Node<>(verdi, null,null);  // tom liste
+        if (antall == 0) {
+            hode = new Node<>(verdi, null,null); // tom liste
+            hale = hode;
+        }
         else { /*hale = hale.neste = new Node<>(verdi,hale, null); */        // legges bakerst
             hale.neste = new Node<>(verdi, hale, null);
             hale = hale.neste;
@@ -145,22 +148,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     //Oppgave 3a
     private Node <T> finnNode(int indeks){
-        if(indeks < 0 || indeks >= antall){
-            throw new IndexOutOfBoundsException();
+        if(indeks < 0/* || indeks >= antall*/){
+            throw new IndexOutOfBoundsException("Ugyldig indeks");
         }
-        Node <T> p = hode;
-        Node <T> r = hale;
-
         //opretter variabel midten
-        int midten = antall / 2;
+        /*int midten = antall / 2;*/
 
-        if(indeks <= midten) { // Dersom indeksen er på første halvdel
+        if(indeks < antall / 2) { // Dersom indeksen er på første halvdel
+            Node <T> p = hode;
             for(int i = 0; i < indeks; i++){
                 p = p.neste;
             }
             return p;
         }
         else { // Dersom indeksen er på andre halvdel
+            Node <T> r = hale;
             for (int i = 0; i < indeks; i++) {
                 r = r.forrige;
             }
