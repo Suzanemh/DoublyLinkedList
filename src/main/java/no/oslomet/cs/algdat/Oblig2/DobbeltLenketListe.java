@@ -86,35 +86,34 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                     ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
     }
 
+    /*fratilKontroll(antall,fra,til);
+       Liste<T> n = new DobbeltLenketListe<>();
+       Node<T> p = hode;
+       int endringer = 0;
+       if (antall == 0)  hode = hale = null;
+       while(p!=null) {
+           if(endringer >= fra && endringer < til){
+               n.leggInn(p.verdi);
+           }
+           p = p.neste;
+           endringer++;
+       }
+       return n;*/
     public Liste<T> subliste(int fra, int til) { //Oppgave 3b
-        /*fratilKontroll(antall,fra,til);
-        Liste<T> n = new DobbeltLenketListe<>();
-        Node<T> p = hode;
-        int endringer = 0;
-        if (antall == 0)  hode = hale = null;
-        while(p!=null) {
-            if(endringer >= fra && endringer < til){
-                n.leggInn(p.verdi);
-            }
-            p = p.neste;
-            endringer++;
-        }
-        return n;*/
+
         Liste<T> liste = new DobbeltLenketListe<>();
+        fratilKontroll(antall, fra, til);
         int lengde = til - fra;
 
         if (lengde < 1) {
             return liste;
         }
+        Node<T> p = finnNode(fra);
 
-        Node<T> antall = finnNode(fra);
-
-        while (lengde > 0) {
-            liste.leggInn(antall.verdi);
-            antall = antall.neste;
-            lengde--;
+        for (int i = fra; i < til; i++) {
+            liste.leggInn(p.verdi);
+            p = p.neste;
         }
-
         return liste;
     }
 
@@ -163,7 +162,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
         else { // Dersom indeksen er på andre halvdel
             Node <T> r = hale;
-            for (int i = 0; i < indeks; i++) {
+            for (int i = 1; i < antall - indeks; i++) {
                 r = r.forrige;
             }
             return r;
