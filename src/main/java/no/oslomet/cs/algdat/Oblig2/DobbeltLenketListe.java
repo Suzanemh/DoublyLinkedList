@@ -171,10 +171,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
     }
 
-    // Inspirert av kompendiets Programkode 3.3.2 g)
-    // Nesten ferdig, mangler en del forrige pekere på noen av nodene
-    //
-    // De starter riktig, men endres når de blir dyttet bort.
+    // Oppgave 5
+    // Utgangspunktet var kompendiets Programkode 3.3.2 g)
+    // Den måtte tilpasses en dobbel lenket liste
+    // Største utfordringen var følgelig pekerne
+    // Viktig å også skille ut tilfellene der noe settes i 0 indeks på tom tabell kontra en tabell med innhold.
+
     @Override
     public void leggInn(int indeks, T verdi) {
         Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
