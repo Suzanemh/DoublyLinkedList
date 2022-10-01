@@ -185,19 +185,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 hale = hode;
             }
             else {
-                hode = new Node<T> (verdi, null, hode);                       // Dersom listen ikke er tom, må nye nodens neste peker, peke på hodet.
+                hode = new Node<T> (verdi, null, hode);                       // Dersom listen ikke er tom, må nye nodens neste peker, peke på gamle hodet.
+                hode.neste.forrige = hode;                                          // Må huske å gi gamle hodet en forrige peker
             }
         }
-        else if (indeks == antall) {                                                // innlegg til bakerste indeks
-            hale.neste = new Node<T>(verdi, hale, null);                      // her må nye nodens forrige peker peke på hale
-            hale = hale.neste;
+        else if (indeks == antall) {                                          // innlegg til bakerste indeks
+            hale.neste = new Node<T>(verdi, hale, null);                // her må nye nodens forrige peker peke på gamle halen
+            hale = hale.neste;                                              // Så oppdaterer man halen
         }
         else {
-            Node<T> p = hode;                  // p flyttes indeks - 1 ganger
+            Node<T> p = hode;                                               // p flyttes indeks - 1 ganger. Derfor starter i som 1 og ikke 0
             for (int i = 1; i < indeks; i++) {
                 p = p.neste;
             }
-            p.neste = new Node<T>(verdi, p.forrige, p.neste);  // verdi settes inn i listen
+            p.neste = new Node<T>(verdi, p.neste.forrige, p.neste);  // verdi settes inn i listen, med riktig pekere. Merk forrige pekeren.
+            p.neste.neste.forrige = p.neste;                    // MiiiiiindBLOWN - Dette var det som skulle til for å riktig referere neste indeksen
         }
         antall++;
         endringer ++;
