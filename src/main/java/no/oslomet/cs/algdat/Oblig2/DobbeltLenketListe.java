@@ -256,7 +256,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     // Oppgave 6
     @Override
-    public boolean fjern(T verdi) { // letter etter verdi, og returnerer verdien
+    public boolean fjern(T verdi) { // (Denne skal fjerne verdi og returnere true)  letter etter verdi, og returnerer verdien
 
         //throw new UnsupportedOperationException();
         if (verdi == null) return false;          // ingen nullverdier i listen
@@ -293,7 +293,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     @Override
-    public T fjern(int indeks) {    /// letter etter index, men fjerner verdi
+    public T fjern(int indeks) {    //  (Denne skal fjerne og returnere verdien, på indeks) letter etter index, men fjerner verdi
 
         //throw new UnsupportedOperationException();
         indeksKontroll(indeks, false);  // Se Liste, false: indeks = antall er ulovlig
