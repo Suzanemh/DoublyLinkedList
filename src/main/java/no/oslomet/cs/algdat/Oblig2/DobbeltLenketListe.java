@@ -172,6 +172,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     // Inspirert av kompendiets Programkode 3.3.2 g)
+    // Nesten ferdig, mangler en del forrige pekere på noen av nodene
     @Override
     public void leggInn(int indeks, T verdi) {
         Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
@@ -197,6 +198,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             p.neste = new Node<T>(verdi, p.forrige, p.neste);  // verdi settes inn i listen
         }
         antall++;
+        endringer ++;
     }
 
     @Override
