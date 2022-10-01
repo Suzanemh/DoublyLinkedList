@@ -186,7 +186,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
         }
         else if (indeks == antall) {                                                // Dersom ny verdi skal ligge bakerst
-            hale.neste = new Node<T>(verdi, hale.neste.forrige, null);                      // legges bakerst
+            hale.neste = new Node<T>(verdi, hale, null);                      // her må nye nodens forrige peker peke på hale
             hale = hale.neste;
         }
         else {
