@@ -176,16 +176,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public void leggInn(int indeks, T verdi) {
         Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
         indeksKontroll(indeks, true);
-        if (indeks == 0) {
+        if (indeks == 0) {                                                          // innlegg til 0'te indeks
             if (antall == 0) {
                 hode = new Node<T> (verdi, null, null);
                 hale = hode;
             }
             else {
-                hode = new Node<T> (verdi, null, hode);
+                hode = new Node<T> (verdi, null, hode);                       // Dersom listen ikke er tom, må nye nodens neste peker, peke på hodet.
             }
         }
-        else if (indeks == antall) {                                                // Dersom ny verdi skal ligge bakerst
+        else if (indeks == antall) {                                                // innlegg til bakerste indeks
             hale.neste = new Node<T>(verdi, hale, null);                      // her må nye nodens forrige peker peke på hale
             hale = hale.neste;
         }
@@ -194,7 +194,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             for (int i = 1; i < indeks; i++) {
                 p = p.neste;
             }
-            p.neste = new Node<T>(verdi, null, null);  // verdi settes inn i listen
+            p.neste = new Node<T>(verdi, p.forrige, p.neste);  // verdi settes inn i listen
         }
         antall++;
     }
