@@ -99,7 +99,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
            endringer++;
        }
        return n;*/
-    public Liste<T> subliste(int fra, int til) { //Oppgave 3b
+
+    //Oppgave 3b
+    public Liste<T> subliste(int fra, int til) {
 
         Liste<T> liste = new DobbeltLenketListe<>();
         fratilKontroll(antall, fra, til);
@@ -169,49 +171,53 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
     }
 
+    // Inspirert av kompendiets Programkode 3.3.2 g)
     @Override
     public void leggInn(int indeks, T verdi) {
-        /*Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
+        Objects.requireNonNull(verdi, "Ikke tillatt med null-verdier!");
         indeksKontroll(indeks, true);
         if (indeks == 0)                     // ny verdi skal ligge først
         {
-            hode = new Node<T>(verdi, hode);    // legges først
+            hode = new Node<T>(verdi, null, null);    // legges først
             if (antall == 0) hale = hode;      // hode og hale går til samme node
         }
         else if (indeks == antall)           // ny verdi skal ligge bakerst
         {
-            hale = hale.neste = new Node<T>(verdi, null);  // legges bakerst
+            hale.neste = new Node<T>(verdi, hale, null);  // legges bakerst
+            hale = hale.neste;
         }
         else
         {
             Node<T> p = hode;                  // p flyttes indeks - 1 ganger
-            for (int i = 1; i < indeks; i++) p = p.neste;
-
-            p.neste = new Node<T>(verdi, p.neste);  // verdi settes inn i listen
+            for (int i = 0; i < indeks; i++) {
+                p = p.neste;
+            }
+            p.neste = new Node<T>(verdi, null, null);  // verdi settes inn i listen
         }
-        antall++;*/
+        antall++;
     }
-    // oppgave 4
-    // Oppgaven er tatt fra løsningsforslag Avsnitt 3.3.3   oppgave 2 i kompendiet
-    //kaller på metoden indeksTil() og sjekker om verdien finnes
-    // hvis inteksTil() innenholder ønsket verdien returneres true, hvis ikke da retuneres false
+
     @Override
     public boolean inneholder(T verdi) {
         //throw new UnsupportedOperationException();
         return indeksTil(verdi) != -1;
     }
 
+
     @Override
     public T hent(int indeks) {
         indeksKontroll(indeks,false);
         return finnNode(indeks).verdi;
     }
-    // oppgave 4
-    // Oppgaven er tatt fra løsningsforslag Avsnitt 3.3.3   oppgave 2 i kompendiet
+
+    /*      Oppgave 4
+    Oppgaven er tatt fra løsningsforslag Avsnitt 3.3.3   oppgave 2 i kompendiet
+    kaller på metoden indeksTil() og sjekker om verdien finnes
+    hvis inteksTil() innenholder ønsket verdien returneres true, hvis ikke da retuneres false*/
     @Override
     public int indeksTil(T verdi) {
-        //throw new UnsupportedOperationException();
         if (verdi == null) return -1;
+
         // for å finne verdien må vi loope gjennom lenket liste og vi starter fra hode
         Node<T> p = hode;
 
