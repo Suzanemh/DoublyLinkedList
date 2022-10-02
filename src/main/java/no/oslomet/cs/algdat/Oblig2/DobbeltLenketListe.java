@@ -242,23 +242,24 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         if (verdi == null) return false;          // ingen nullverdier i listen
 
-        Node<T> q = hode;             // hjelpepekere
+        Node<T> q = hode;             // hjelpepekeren
 
-        while (q != null)                         // q skal finne verdien t
+        while (q != null)                         // Løkke for å finne verdien.
         {
             if (q.verdi.equals(verdi)) break;       // verdien funnet
             q = q.neste;
         }
 
         if (q == null) {
-            return false;              // fant ikke verdi
+            return false;              // Dersom vi ikke fant verdien i listen
         }
-        else if (q == hode) {   // Hvis vi finner verdi som skal fjernes på begynnelsen av list
+        else if (q == hode) {   // Hvis verdien som skal fjernes er i hodet.
+
             if (antall == 1) {  // Hvis hode (og dermed hale) er det eneste på listen:
                 hode = null;
                 hale = null;
             }
-            else if (antall > 1) {
+            else if (antall > 1) {      // Hvis hode IKKE er det eneste i listen
                 hode = hode.neste;
                 hode.forrige = null;
             }
@@ -267,7 +268,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hale = hale.forrige;
             hale.neste = null;
             }
-        else {
+        else {                  // Hvis verdien ikke er i halen
             q.forrige.neste = q.neste;
             q.neste.forrige = q.forrige;
         }
@@ -282,12 +283,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public T fjern(int indeks) {    //  (Denne skal fjerne og returnere verdien, på indeks)
 
-        indeksKontroll(indeks, false);  // Se Liste, false: indeks = antall er ulovlig
+        indeksKontroll(indeks, false);
 
         T temp;                          // hjelpevariabel
 
         if (indeks == 0) {              // Dersom hodet skal fjernes
             temp = hode.verdi;
+
             if (antall == 1) {          // Dersom HODET ER ENESTE node i listen
                 hode = null;
                 hale = null;
@@ -303,9 +305,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             Node<T> q = p.neste;               // q skal fjernes
             temp = q.verdi;                    // tar vare på verdien som skal fjernes
 
-            /*p.neste = p.neste.neste;
-            p.neste.forrige = p;*/
-
             if (q == hale) {        // Dersom q er siste node
                 hale = p;
                 hale.neste = null;
@@ -316,10 +315,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 q.neste.forrige = p;        // Dette var den gjenstående bakover pekeren som nesten ødela kvelden min :P
             }
         }
-
         antall--;                            // reduserer antallet
         return temp;
-
     }
     //Oppgave 7
     @Override
