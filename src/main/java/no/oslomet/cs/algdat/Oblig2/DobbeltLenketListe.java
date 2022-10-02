@@ -86,20 +86,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                     ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
     }
 
-    /*fratilKontroll(antall,fra,til);
-       Liste<T> n = new DobbeltLenketListe<>();
-       Node<T> p = hode;
-       int endringer = 0;
-       if (antall == 0)  hode = hale = null;
-       while(p!=null) {
-           if(endringer >= fra && endringer < til){
-               n.leggInn(p.verdi);
-           }
-           p = p.neste;
-           endringer++;
-       }
-       return n;*/
-
     //Oppgave 3b
     public Liste<T> subliste(int fra, int til) {
 
@@ -149,12 +135,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     //Oppgave 3a
     private Node <T> finnNode(int indeks){
-        if(indeks < 0/* || indeks >= antall*/){
+        if(indeks < 0){
             throw new IndexOutOfBoundsException("Ugyldig indeks");
         }
-        //opretter variabel midten
-        /*int midten = antall / 2;*/
-
         if(indeks < antall / 2) { // Dersom indeksen er på første halvdel
             Node <T> p = hode;
             for(int i = 0; i < indeks; i++){
@@ -209,7 +192,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean inneholder(T verdi) {
-        //throw new UnsupportedOperationException();
         return indeksTil(verdi) != -1;
     }
 
@@ -258,7 +240,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean fjern(T verdi) { // (Denne skal fjerne verdi og returnere true)  letter etter verdi, og returnerer verdien
 
-        //throw new UnsupportedOperationException();
         if (verdi == null) return false;          // ingen nullverdier i listen
 
         Node<T> q = hode;             // hjelpepekere
@@ -326,11 +307,32 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return (T) temp;
 
     }
-
+    //Oppgave 7
     @Override
     public void nullstill() {
-        throw new UnsupportedOperationException();
+        //1.måte Metoden tok fra Kompendiet Avsnitt 3.3.2
+        long startTime = System.nanoTime();
+        Node<T> p = hode, q = null;     //start i hode
+        while(p != null) {              //while løkke så lenge til node p er null
+            q = p.neste;
+            p.neste = null;
+            p.verdi = null;
+            p = q;
+        }
+        hode = hale = null;     // settes både hode og hale til null
+        antall = 0;
+        endringer++;
+
+        //sjekker tidsmåling nede, skal fjerne seinere etter å ha sjekket tidsmåling på 2.måte
+        long stopTime = System.nanoTime();
+        System.out.println(stopTime-startTime);
+
+        //2.måte
+        /*for(int i = 0; i < antall; i++) {
+            fjern(i);
+        }*/
     }
+
 
     // Koden er tatt fra kompendie fra Oppgaver til Avsnitt 3.3.2 oppgave 2
     @Override
