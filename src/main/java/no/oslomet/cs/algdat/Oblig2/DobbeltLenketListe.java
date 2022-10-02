@@ -258,7 +258,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean fjern(T verdi) { // (Denne skal fjerne verdi og returnere true)  letter etter verdi, og returnerer verdien
 
-        //throw new UnsupportedOperationException();
         if (verdi == null) return false;          // ingen nullverdier i listen
 
         Node<T> q = hode;             // hjelpepekere
@@ -271,17 +270,30 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             q = q.neste;                     // p er forgjengeren til q
         }
 
-        if (q == null) return false;              // fant ikke verdi
-        else if (q == hode) hode = hode.neste;    // Hvis vi finner verdi som skal fjernes på begynnelsen av list
-            if (hode!= null) hode.forrige = null;
-            else hale = null;
+        if (q == null) {
+            return false;              // fant ikke verdi
+        }
+        else if (q == hode) {   // Hvis vi finner verdi som skal fjernes på begynnelsen av list
+            if (antall == 1) {  // Hvis hode (og dermed hale) er det eneste på listen:
+                hode = null;
+                hale = null;
+            }
+            else if (antall > 1) {
+                hode = hode.neste;
+                hode.forrige = null;
+            }
+        }
+        else if (q == hale) {   // Hvis halen er verdien som skal fjernes
+            hale = hale.forrige;
+            hale.neste = null;
+            }
+        else {
+            q.forrige.neste = q.neste;
+            q.neste.forrige = q.forrige;
+        }
+
         //else p.neste = q.neste;                   // pekeren hoope over verdiden som skal slettes og peker tilneste,
         // de som bli hoppet over automatisk slettes. Gjelder noder i midten mellom hide og hale
-
-
-        if (q == hale) {hale = hale.forrige; hale.neste = null; }                 // Fjerner siste node
-        else  {q.forrige.neste = q.neste; q.neste.forrige = q.forrige;}
-
 
 
 
@@ -298,32 +310,37 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //throw new UnsupportedOperationException();
         indeksKontroll(indeks, false);  // Se Liste, false: indeks = antall er ulovlig
 
-        Node<T> temp;                          // hjelpevariabel
+        T temp;                          // hjelpevariabel
 
-        if (indeks == 0)                     // skal første verdi fjernes?
-        {
-            temp = hode;                 // tar vare på verdien som skal fjernes
-            hode = hode.neste;                 // hode flyttes til neste node
-            hode.forrige = null;            // nå har vi en pekker til og den må peke på null
-
-            if (antall == 1) hale = null;      // det var kun en verdi i listen Konklusjon, vi har bare en verdi
+        if (indeks == 0) {
+            temp = hode.verdi;
+            if (antall == 1) {
+                hode = null;
+                hale = null;
+            }
+            else if (antall > 1) {
+                temp = hode.verdi;
+                hode = hode.neste;     // hode flyttes til neste node
+                hode.forrige = null;   // Sørger for at forrige peker til hode, peker på null
+            }
         }
-        else
-        {
+        else {
             Node<T> p = finnNode(indeks - 1);  // p er noden foran den som skal fjernes
             Node<T> q = p.neste;               // q skal fjernes
-            temp = q.neste;                    // tar vare på verdien som skal fjernes
+            temp = q.verdi;                    // tar vare på verdien som skal fjernes
 
-            p.neste = p.neste.neste;
-            p.neste.forrige =p;
+            /*p.neste = p.neste.neste;
+            p.neste.forrige = p;*/
 
-            if (q == hale) hale = p;           // q er siste node
+            if (q == hale) {        // Dersom q er siste node
+                hale = p;
+            }
             p.neste = q.neste;                 // "hopper over" q
-            p.forrige= q.forrige;
+            p.forrige= q.forrige.forrige;
         }
 
         antall--;                            // reduserer antallet
-        return (T) temp;
+        return temp;
 
     }
 
