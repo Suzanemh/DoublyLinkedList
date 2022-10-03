@@ -334,14 +334,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         antall = 0;
         endringer++;
 
-        //sjekker tidsmåling nede, skal fjerne seinere etter å ha sjekket tidsmåling på 2.måte
+        //sjekker tidsmåling nede
         long stopTime = System.nanoTime();
         System.out.println(stopTime-startTime);
-
-        //2.måte
-        /*for(int i = 0; i < antall; i++) {
-            fjern(i);
-        }*/
     }
 
 
