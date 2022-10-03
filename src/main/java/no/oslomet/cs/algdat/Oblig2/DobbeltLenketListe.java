@@ -419,8 +419,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             iteratorendringer = endringer;  // teller endringer
         }
 
-        private DobbeltLenketListeIterator(int indeks) {
-            throw new UnsupportedOperationException();
+        //8c
+        private DobbeltLenketListeIterator(int indeks) { //ligner på konstruktøren som er ferdigkodet.
+
+            denne = finnNode(indeks); //denne starter på indeks til den aktuelle noden
+            fjernOK = false; //blir sann når next() kalles
+            iteratorendringer = endringer; //teller endringer
         }
 
         @Override
