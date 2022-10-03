@@ -399,8 +399,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+    //8D
     public Iterator<T> iterator(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks, false); //Skjekker om indeksen er lovlig
+        return new DobbeltLenketListeIterator(indeks); //returnerer en instans av iteratorklassen fra oppgave 8c
     }
 
     private class DobbeltLenketListeIterator implements Iterator<T> {
