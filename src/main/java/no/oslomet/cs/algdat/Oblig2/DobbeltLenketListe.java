@@ -128,6 +128,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hale = hale.neste;
         }
         antall++;                  // en mer i listen
+        endringer++;
         return true;
     }
 
@@ -231,6 +232,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
        Node<T> p = finnNode(indeks);
        T gammelVerdi = p.verdi;
        p.verdi = nyverdi;
+       endringer++;
        return gammelVerdi;
     }
 
@@ -275,6 +277,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         q.neste = null;                           // nuller nestepeker
 
         antall--;                                 // en node mindre i listen
+        endringer++;
         return true;
     }
 
@@ -313,7 +316,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 q.neste.forrige = p;        // Dette var den gjenstående bakover pekeren som nesten ødela kvelden min :P
             }
         }
-        antall--;                            // reduserer antallet
+        antall--;// reduserer antallet
+        endringer++;
         return temp;
     }
     //Oppgave 7
