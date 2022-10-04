@@ -462,10 +462,35 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     } // class DobbeltLenketListeIterator
 
+    // Oppgave 10
+    // På ingen måte elegant, men det funker xD
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
-        throw new UnsupportedOperationException();
-    }
 
+        int inversjoner = 0;                            //  Lager en variabel for antall inversjoner
+        for (int i = 1; i < liste.antall(); i++) {      // Før vi sjekker for antallet inversjoner med en for-løkke
+            if (c.compare(liste.hent(i), liste.hent(i-1)) < 0) {    // Hvis første er mindre enn neste
+                    inversjoner ++;                     // Inkrementerer inversjoner
+            }
+        }
+        while (inversjoner > 0) {                       //  Deretter kjører vi gjennom og sorterer tabellen en og en verdi
+            for (int i = 1; i < liste.antall(); i++) {
+                T fjerntemp;                            // Oppretter et par hjelpevariabler for å holde på verdiene
+                T hent;
+                if (c.compare(liste.hent(i), liste.hent(i-1)) < 0) { // Hvis første argument er mindre enn neste:
+                        fjerntemp = liste.fjern(i);                         //  så bytter de plass.
+                        hent = liste.hent(i-1);
+                        liste.leggInn(i, hent);
+                        liste.oppdater(i-1, fjerntemp);
+                }
+            }
+            inversjoner = 0;                                    // Så resettes inversjoner telleren til 0
+            for (int i = 1; i < liste.antall(); i++) {          // Før vi igjen går gjennom og sjekker antall inversjoner
+                if (c.compare(liste.hent(i), liste.hent(i-1)) < 0) {
+                        inversjoner ++;
+                }
+            }
+        }    // While løkken vil da fortsette så lenge det er inversjoner igjen i listen. Ikke vakkert, men det funker.
+    }
 } // class DobbeltLenketListe
 
 
