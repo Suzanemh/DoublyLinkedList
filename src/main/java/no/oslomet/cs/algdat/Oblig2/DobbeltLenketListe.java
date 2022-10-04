@@ -464,12 +464,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
             fjernOK = false;
 
-            Node<T> q = hode;
+            Node<T> q = hode; ///jfdisjfhidj
 
             if(antall == 1) {
                 hale = null;
                 hode = null;
             }
+
             if(hode.neste == denne) {
                 hode = hode.neste;
                 if(denne == null) {
