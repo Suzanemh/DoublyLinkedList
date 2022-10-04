@@ -5,6 +5,7 @@ Oppgaven er levert av følgende studenter:
 * Navn Navnesen, S123456, s123456@oslomet.no
 * ...
 
+TEST
 # Arbeidsfordeling
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
