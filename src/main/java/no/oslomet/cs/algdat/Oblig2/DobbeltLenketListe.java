@@ -341,7 +341,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         System.out.println(stopTime-startTime);
     }
 
-
     // Koden er tatt fra kompendie fra Oppgaver til Avsnitt 3.3.2 oppgave 2
     @Override
     public String toString() {
@@ -457,7 +456,44 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public void remove() {
-            throw new UnsupportedOperationException();
+            if(!fjernOK) {
+                throw new IllegalStateException("Ikke tillatt å bruke metoden");
+            }
+            if(endringer != iteratorendringer) {
+                throw new ConcurrentModificationException("Disse to verdiene er forskjellige! Listen er endret!");
+            }
+            fjernOK = false;
+
+            Node<T> q = hode;
+
+            if(antall == 1) {
+                hale = null;
+                hode = null;
+            }
+            if(hode.neste == denne) {
+                hode = hode.neste;
+                if(denne == null) {
+                    hale =null;
+                }
+            }
+            else {
+                Node <T> r = hode;
+
+                while (r.neste.neste != denne) {
+                    r = r.neste;
+                }
+
+                q = r.neste;
+                r.neste = denne;
+                if(denne == null) {
+                    hale = r;
+                }
+                q.verdi = null;
+                q.neste = null;
+            }
+            antall--;
+            endringer++;
+            iteratorendringer++;
         }
 
     } // class DobbeltLenketListeIterator
