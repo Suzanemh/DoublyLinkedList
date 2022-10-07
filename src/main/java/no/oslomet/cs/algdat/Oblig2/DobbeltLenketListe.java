@@ -455,43 +455,41 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
 
         @Override
+        //i utgangspunktet så metoden er tatt fra Kompendiet med det har blitt tilpasset/ endret så det kunne bli fungerende i tilfellet vårt
         public void remove() {
             if(!fjernOK) {
-                throw new IllegalStateException("Ikke tillatt å bruke metoden");
+                throw new IllegalStateException("Ulovlig tilstand!");   //feilmelding
             }
             if(endringer != iteratorendringer) {
-                throw new ConcurrentModificationException("Disse to verdiene er forskjellige! Listen er endret!");
+                throw new ConcurrentModificationException("Disse to verdiene er forskjellige! Listen er endret!"); //feilmelding
             }
-            fjernOK = false;
+            fjernOK = false; //dersom disse hindrene oppe passeres, settes fjernOK til false
 
-            Node<T> q = hode; ///jfdisjfhidj
 
-            if(antall == 1) {
-                hale = null;
+            if(antall == 1) { // dersom antall er lik 1 så da finnes en node som er hode og hale samtidig
                 hode = null;
+                hale = null;
             }
 
-            if(hode.neste == denne) {
+            else if(hode.neste == denne) {      //Hvis den første skal fjernes så må hode oppdateres
                 hode = hode.neste;
-                if(denne == null) {
-                    hale =null;
-                }
+                denne.forrige = null;
             }
             else {
-                Node <T> r = hode;
+                Node <T> r = hode;      //hjelpevariabel
 
                 while (r.neste.neste != denne) {
                     r = r.neste;
                 }
-
-                q = r.neste;
-                r.neste = denne;
-                if(denne == null) {
-                    hale = r;
+                if(denne != null) {             //dersom null er hverken første node eller siste
+                    r.neste = denne;
+                    denne.forrige = r;
+                } else {                        //dersom null er siste element så må hale oppdateres
+                    hale = hale.forrige;
+                    hale.neste = null;
                 }
-                q.verdi = null;
-                q.neste = null;
             }
+
             antall--;
             endringer++;
             iteratorendringer++;
