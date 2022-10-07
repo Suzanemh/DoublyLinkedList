@@ -455,6 +455,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
 
         @Override
+        //i utgangspunktet så metoden er tatt fra Kompendiet med det har blitt tilpasset/ endret så det kunne bli fungerende i tilfellet vårt
         public void remove() {
             if(!fjernOK) {
                 throw new IllegalStateException("Ulovlig tilstand!");   //feilmelding
