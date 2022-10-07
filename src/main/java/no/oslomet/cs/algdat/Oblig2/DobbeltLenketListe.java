@@ -455,7 +455,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
 
         @Override
-        //i utgangspunktet så metoden er tatt fra Kompendiet med det har blitt tilpasset/ endret så det kunne bli fungerende i tilfellet vårt
+        // Vi tok utgangspunkt i kompendiets programkode 3.3.4 d) - Måtte en del endringer til for å fungere med en slik oppgaven ønsket.
+        // "denne" er fra iteratoren og vil være noden til høyre for den som skal fjernes. Altså p fra oppgaveteksten.
         public void remove() {
             if(!fjernOK) {
                 throw new IllegalStateException("Ulovlig tilstand!");   //feilmelding
@@ -463,33 +464,32 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             if(endringer != iteratorendringer) {
                 throw new ConcurrentModificationException("Disse to verdiene er forskjellige! Listen er endret!"); //feilmelding
             }
-            fjernOK = false; //dersom disse hindrene oppe passeres, settes fjernOK til false
+            fjernOK = false; // Dersom disse hindrene oppe passeres, settes fjernOK til false
 
 
-            if(antall == 1) { // dersom antall er lik 1 så da finnes en node som er hode og hale samtidig
+            if(antall == 1) { // Dersom antall er lik 1 vil den eksisterende noden (som skal fjernes) være både hode og hale samtidig, og håndteres deretter.
                 hode = null;
                 hale = null;
             }
 
-            else if(hode.neste == denne) {      //Hvis den første skal fjernes så må hode oppdateres
+            else if(hode.neste == denne) { // Dersom den første skal fjernes (i en liste med mer enn 1 element) så må hode oppdateres
                 hode = hode.neste;
                 denne.forrige = null;
             }
-            else {
-                Node <T> r = hode;      //hjelpevariabel
+            else {                      // For å fjerne alt utenom hodet:
+                Node <T> r = hode;      // Hjelpevariabel
 
-                while (r.neste.neste != denne) {
+                while (r.neste.neste != denne) {    // Itererer til riktig plass på listen
                     r = r.neste;
                 }
-                if(denne != null) {             //dersom null er hverken første node eller siste
+                if(denne != null) {             // Dersom det som skal fjernes IKKE er halen
                     r.neste = denne;
                     denne.forrige = r;
-                } else {                        //dersom null er siste element så må hale oppdateres
+                } else {                        // Dersom denne er lik null, har "denne" blitt skjøvet ut av listen sine grenser, da vet vi at det som skal fjernes er halen.
                     hale = hale.forrige;
                     hale.neste = null;
                 }
             }
-
             antall--;
             endringer++;
             iteratorendringer++;
