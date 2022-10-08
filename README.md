@@ -2,19 +2,21 @@
 
 Denne oppgaven er en innlevering i Algoritmer og Datastrukturer. 
 Oppgaven er levert av følgende studenter:
-* Paula Sielawa, S364584, s364584@oslomet.no
-* ..
+* George Alexander Saavedra s360536
+* Paula Sielawa s364584
+* Suzane Mahmoud Hamze s364759
+* Majda Ivic s362095
 
-TEST
+
 # Arbeidsfordeling
 
-I oppgaven har vi hatt følgende arbeidsfordeling:
+Vi har hatt følgende arbeidsfordeling:
 * Suzane, George og Paula har hatt hovedansvar for oppgave 1 og 3. 
 * Majda har hatt hovedansvar for oppgave 2 og 4. 
 * George har hatt hovedansvar for oppgave 5. 
 * Suzane har hatt hovedansvar for oppgave 8.
 * Paula har hatt hovedansvar for oppgave 7 og 9.
-* George og Majda har hatt hovedansvar for oppgave 6 og 10. 
+* George og Majda har hatt hovedansvar for oppgave 6 og 10.
 
 # Oppgavebeskrivelse
 
