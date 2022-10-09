@@ -70,7 +70,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
     }
 
-    //Oppgave 3B Kildekode hentet fra 1.2.3.a
+    //Oppgave 3B Kildekode hentet fra kompendiets programkode 1.2.3.a
     private static void fratilKontroll(int antall, int fra, int til)
     {
         if (fra < 0)                                  // fra er negativ
@@ -132,22 +132,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return true;
     }
 
-    //Oppgave 3a
+    //Oppgave 3a - Med utangspunkt i kompendiets Programkode 3.3.3 a)
     private Node <T> finnNode(int indeks){
         if(indeks < 0){
             throw new IndexOutOfBoundsException("Ugyldig indeks");
         }
         if(indeks < antall / 2) { // Dersom indeksen er på første halvdel
             Node <T> p = hode;
-            for(int i = 0; i < indeks; i++){
+            for(int i = 0; i < indeks; i++){    // Beveger oss indeks antall ganger til vi finner riktig node
                 p = p.neste;
             }
             return p;
         }
         else { // Dersom indeksen er på andre halvdel
             Node <T> r = hale;
-            for (int i = 1; i < antall - indeks; i++) {
-                r = r.forrige;
+            for (int i = 1; i < antall - indeks; i++) {  // Her må vi bevege oss (antall-indeks) antall ganger for å finne noden,
+                r = r.forrige;                           // ettersom vi leter fra halen
             }
             return r;
         }
@@ -194,7 +194,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return indeksTil(verdi) != -1;
     }
 
-
+    // Oppgave 3a:
     @Override
     public T hent(int indeks) {
         indeksKontroll(indeks,false);
@@ -223,6 +223,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return -1;
     }
 
+    // Oppgave 3a:
     @Override
     public T oppdater(int indeks, T nyverdi) { //kildekode inspirert fra kompendium 3.3.3.b
 

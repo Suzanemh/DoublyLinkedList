@@ -20,6 +20,13 @@ Vi har hatt følgende arbeidsfordeling:
 
 # Oppgavebeskrivelse
 
+* Oppgave 3:
+3a:
+finnNode() Er løst med 2 if setninger, for å avgjøre hvor indeksen er ift midten.
+Den første if setningen flytter seg indeks antall ganger til riktig node, mens den andre som
+starter fra halen beveger seg (antall-indeks) antall ganger.
+
+* Oppgave 7:
 
 I oppgave 7 ble vi bedt om å tømme listen på 2 måter og velge den måten som er mest effektivt.
 For å registrere tid vi har brukt:
