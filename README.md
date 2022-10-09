@@ -22,9 +22,12 @@ Vi har hatt følgende arbeidsfordeling:
 
 * Oppgave 3:
 3a:
+
 finnNode() Er løst med 2 if setninger, for å avgjøre hvor indeksen er ift midten.
 Den første if setningen flytter seg indeks antall ganger til riktig node, mens den andre som
 starter fra halen beveger seg (antall-indeks) antall ganger.
+
+Metodene oppdater() og hent() er lånt fra kompendiets programkode 3.3.3 b)
 
 * Oppgave 7:
 
