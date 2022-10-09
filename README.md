@@ -2,10 +2,10 @@
 
 Denne oppgaven er en innlevering i Algoritmer og Datastrukturer. 
 Oppgaven er levert av følgende studenter:
-* George Alexander Saavedra s360536
 * Paula Sielawa s364584
 * Suzane Mahmoud Hamze s364759
 * Majda Ivic s362095
+* George Alexander Saavedra s360536
 
 
 # Arbeidsfordeling
@@ -20,9 +20,6 @@ Vi har hatt følgende arbeidsfordeling:
 
 # Oppgavebeskrivelse
 
-I oppgave 1 så gikk vi frem ved å ...
-
-I oppgave 2 så brukte vi en ... til å ...
 
 I oppgave 7 ble vi bedt om å tømme listen på 2 måter og velge den måten som er mest effektivt.
 For å registrere tid vi har brukt:
