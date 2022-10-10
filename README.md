@@ -20,6 +20,16 @@ Vi har hatt følgende arbeidsfordeling:
 
 # Oppgavebeskrivelse
 
+* Oppgave 1:
+Konstruktøren DobbeltLenketListe(T[] a) kastes requireNonNull-metode når tabell a er tom. Vi bruker forløkke etterpå for å
+hoppe over eventuelle nuller (null-verdier tas ikke med). Da endelig har vi funnet verdi som ikke er null og fortsatt er 
+mindre enn en a-array lengde så setter vi første element som er også et hode på plass. Dersom det er flere verdier så 
+det settes andre noder i rekkefølge. Her er triksen å legge nye noder bakerst så først vi har hale som er før p (p.forrige=
+hale). Før vi går ut av forløkken vil halen være siste p. Som dermed har en neste peker som peker på null.
+Metodene int antall() og boolean tom(). Den første skal returnere antallet verdier i listen (return antall) og den andre 
+skal returnere true/false avhengig av om listen er tom eller ikke (return antall == 0).
+
+
 * Oppgave 3:
 3a:
 
