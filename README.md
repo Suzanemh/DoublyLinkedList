@@ -60,3 +60,7 @@ Utifra tidsmåling er det første måte som er mest effektiv og derfor kun førs
 p var den siste. Hvis next() kalles med p ute av listen, skal det kastes en NoSuchElementException.
 
 8B Opprettet en instans av klassen iterator
+8C Lagde konstruktøren private DobbeltLenkeListeIterator(int indeks). Setter pekeren 
+denne til noden som hører til den oppgitte indeksen. Mye av koden ligner på den
+ferdigkodet konstruktøren. 
+
