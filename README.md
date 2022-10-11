@@ -18,7 +18,6 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 # Oppgavebeskrivelse
 
 
-
 I oppgave 7 ble vi bedt om å tømme listen på 2 måter og velge den måten som er mest effektivt.
 For å registrere tid vi har brukt:
 long startTime = System.nanoTime();
@@ -34,3 +33,12 @@ for(int i = antall -1; i >= 0; i--) {
 Vi har registrert tidsmåling på: 23958.
 Utifra tidsmåling er det første måte som er mest effektiv og derfor kun første metode ble beholdt i klassen.
 
+I oppgave 8a ble metoden next() brukt der4 den reurnerte "denne" veriden. Altså veriden i noden p
+og samtidig flytte p til neste node eller til null hvis p var den siste. 
+
+8b lagde instans av iterator klassen
+8c lagde konstruktøren. Konstruktøren setter pekeren "denne" til den noden som hører
+til den oppgitte indeksen. Konstruktøren her en nesten identisk med dobbeltLenkeListeIterator().
+
+I 8D lages først metoden Iterator <T> iterator(int indeks). Her skjekkes det at indeksen er lovlig
+ved bruk av metoden indeksKontroll(). Deretter returnerer metoden en instans av iterator klassen.

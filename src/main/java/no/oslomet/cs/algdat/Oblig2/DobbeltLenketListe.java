@@ -405,7 +405,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return new DobbeltLenketListeIterator();  //instans av iterator klassen
     }
 
-    //8D
+    //8D Kildekode delvis inspirert fra komepdium 3.2.5.d
     public Iterator<T> iterator(int indeks) {
         indeksKontroll(indeks, false); //Skjekker om indeksen er lovlig
         return new DobbeltLenketListeIterator(indeks); // retur instans av iteratorklassen
@@ -431,6 +431,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         @Override
+        //hasNext() ferdigkodet
         public boolean hasNext()
         {
             return denne != null;
