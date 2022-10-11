@@ -17,9 +17,7 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 
 # Oppgavebeskrivelse
 
-I oppgave 1 så gikk vi frem ved å ...
 
-I oppgave 2 så brukte vi en ... til å ...
 
 I oppgave 7 ble vi bedt om å tømme listen på 2 måter og velge den måten som er mest effektivt.
 For å registrere tid vi har brukt:
