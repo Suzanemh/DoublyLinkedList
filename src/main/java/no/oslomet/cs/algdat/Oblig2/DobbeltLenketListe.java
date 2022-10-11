@@ -70,7 +70,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
     }
 
-    //Oppgave 3B Kildekode hentet fra 1.2.3.a
+    //Oppgave 3B Kildekode hentet fra kompendiets programkode 1.2.3.a
     private static void fratilKontroll(int antall, int fra, int til)
     {
         if (fra < 0)                                  // fra er negativ
@@ -132,22 +132,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return true;
     }
 
-    //Oppgave 3a
+    //Oppgave 3a - Med utangspunkt i kompendiets Programkode 3.3.3 a)
     private Node <T> finnNode(int indeks){
         if(indeks < 0){
             throw new IndexOutOfBoundsException("Ugyldig indeks");
         }
         if(indeks < antall / 2) { // Dersom indeksen er på første halvdel
             Node <T> p = hode;
-            for(int i = 0; i < indeks; i++){
+            for(int i = 0; i < indeks; i++){    // Beveger oss indeks antall ganger til vi finner riktig node
                 p = p.neste;
             }
             return p;
         }
         else { // Dersom indeksen er på andre halvdel
             Node <T> r = hale;
-            for (int i = 1; i < antall - indeks; i++) {
-                r = r.forrige;
+            for (int i = 1; i < antall - indeks; i++) {  // Her må vi bevege oss (antall-indeks) antall ganger for å finne noden,
+                r = r.forrige;                           // ettersom vi leter fra halen
             }
             return r;
         }
@@ -194,7 +194,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return indeksTil(verdi) != -1;
     }
 
-
+    // Oppgave 3a:
     @Override
     public T hent(int indeks) {
         indeksKontroll(indeks,false);
@@ -223,6 +223,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return -1;
     }
 
+    // Oppgave 3a:
     @Override
     public T oppdater(int indeks, T nyverdi) { //kildekode inspirert fra kompendium 3.3.3.b
 
@@ -456,6 +457,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
 
         @Override
+        // Vi tok utgangspunkt i kompendiets programkode 3.3.4 d) - Måtte en del endringer til for å fungere med en slik oppgaven ønsket.
+        // "denne" er fra iteratoren og vil være noden til høyre for den som skal fjernes. Altså p fra oppgaveteksten.
         public void remove() {
             if(!fjernOK) {
                 throw new IllegalStateException("Ulovlig tilstand!");   //feilmelding
@@ -463,33 +466,32 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             if(endringer != iteratorendringer) {
                 throw new ConcurrentModificationException("Disse to verdiene er forskjellige! Listen er endret!"); //feilmelding
             }
-            fjernOK = false; //dersom disse hindrene oppe passeres, settes fjernOK til false
+            fjernOK = false; // Dersom disse hindrene oppe passeres, settes fjernOK til false
 
 
-            if(antall == 1) { // dersom antall er lik 1 så da finnes en node som er hode og hale samtidig
+            if(antall == 1) { // Dersom antall er lik 1 vil den eksisterende noden (som skal fjernes) være både hode og hale samtidig, og håndteres deretter.
                 hode = null;
                 hale = null;
             }
 
-            else if(hode.neste == denne) {      //Hvis den første skal fjernes så må hode oppdateres
+            else if(hode.neste == denne) { // Dersom den første skal fjernes (i en liste med mer enn 1 element) så må hode oppdateres
                 hode = hode.neste;
                 denne.forrige = null;
             }
-            else {
-                Node <T> r = hode;      //hjelpevariabel
+            else {                      // For å fjerne alt utenom hodet:
+                Node <T> r = hode;      // Hjelpevariabel
 
-                while (r.neste.neste != denne) {
+                while (r.neste.neste != denne) {    // Itererer til riktig plass på listen
                     r = r.neste;
                 }
-                if(denne != null) {             //dersom null er hverken første node eller siste
+                if(denne != null) {             // Dersom det som skal fjernes IKKE er halen
                     r.neste = denne;
                     denne.forrige = r;
-                } else {                        //dersom null er siste element så må hale oppdateres
+                } else {                        // Dersom denne er lik null, har "denne" blitt skjøvet ut av listen sine grenser, da vet vi at det som skal fjernes er halen.
                     hale = hale.forrige;
                     hale.neste = null;
                 }
             }
-
             antall--;
             endringer++;
             iteratorendringer++;
