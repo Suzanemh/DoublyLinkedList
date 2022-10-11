@@ -56,3 +56,5 @@ for(int i = antall -1; i >= 0; i--) {
 Vi har registrert tidsmåling på: 23958.
 Utifra tidsmåling er det første måte som er mest effektiv og derfor kun første metode ble beholdt i klassen.
 
+8A Metoden next() returnerer "denne" verdien. verdien i noden p og samtidig flytte p til neste node eller til null hvis
+p var den siste. Hvis next() kalles med p ute av listen, skal det kastes en NoSuchElementException.
