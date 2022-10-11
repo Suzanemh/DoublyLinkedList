@@ -63,4 +63,6 @@ p var den siste. Hvis next() kalles med p ute av listen, skal det kastes en NoSu
 8C Lagde konstruktøren private DobbeltLenkeListeIterator(int indeks). Setter pekeren 
 denne til noden som hører til den oppgitte indeksen. Mye av koden ligner på den
 ferdigkodet konstruktøren. 
-
+8D Lagde metoden Iterator<T> iterator(int indeks). Her brukte jeg også metoden
+indeksKontroll() for å sjekke at indeksen er lovlig, ved å sette boolean verdien til false. 
+Deretter returneren metoden en instans av iteratorklassen
