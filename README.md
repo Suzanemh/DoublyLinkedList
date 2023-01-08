@@ -1,6 +1,7 @@
 # Obligatorisk oppgave 2 i Algoritmer og Datastrukturer
 
 Denne oppgaven er en innlevering i Algoritmer og Datastrukturer. 
+Oppgaven tar for seg temate: Dobbelt lenket liste
 Oppgaven er levert av følgende studenter:
 * Paula Sielawa s364584
 * Suzane Mahmoud Hamze s364759
